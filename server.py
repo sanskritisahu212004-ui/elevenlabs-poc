@@ -44,7 +44,6 @@ class Handler(BaseHTTPRequestHandler):
     def log_message(self, format, *args):
         print(f"Request: {args}")
 
-print("Server running on port 8013...")
 import os
 port = int(os.environ.get('PORT', 10000))
 print(f"Server running on port {port}...")
