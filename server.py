@@ -45,4 +45,7 @@ class Handler(BaseHTTPRequestHandler):
         print(f"Request: {args}")
 
 print("Server running on port 8013...")
-HTTPServer(('0.0.0.0', 8013), Handler).serve_forever()
+import os
+port = int(os.environ.get('PORT', 10000))
+print(f"Server running on port {port}...")
+HTTPServer(('0.0.0.0', port), Handler).serve_forever()
