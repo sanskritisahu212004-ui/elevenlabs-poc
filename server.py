@@ -3,6 +3,32 @@ import json
 import urllib.request
 import os
 
+# Test Groq connection on startup
+def test_groq():
+    payload = json.dumps({
+        "model": GROQ_MODEL,
+        "messages": [{"role": "user", "content": "say hi"}],
+        "max_tokens": 10
+    }).encode()
+    
+    req = urllib.request.Request(
+        "https://api.groq.com/openai/v1/chat/completions",
+        data=payload,
+        headers={
+            "Authorization": f"Bearer {GROQ_API_KEY}",
+            "Content-Type": "application/json"
+        }
+    )
+    try:
+        with urllib.request.urlopen(req) as response:
+            result = json.loads(response.read())
+            print(f"✅ Groq working: {result['choices'][0]['message']['content']}")
+    except Exception as e:
+        try:
+            print(f"❌ Groq Error: {e.read().decode()}")
+        except:
+            print(f"❌ Groq Error: {str(e)}")
+
 GROQ_API_KEY = "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"  
 GROQ_MODEL = "llama-3.3-70b-versatile"
 
@@ -186,6 +212,11 @@ class Handler(BaseHTTPRequestHandler):
 
     def log_message(self, format, *args):
         print(f"Request: {args}")
+
+test_groq()
+port = int(os.environ.get('PORT', 10000))
+print(f"Server running on port {port}...")
+HTTPServer(('0.0.0.0', port), Handler).serve_forever()
 
 port = int(os.environ.get('PORT', 10000))
 print(f"Server running on port {port}...")
