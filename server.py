@@ -3,7 +3,7 @@ import json
 import urllib.request
 import os
 
-GROQ_API_KEY = "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"  
+GROQ_API_KEY = "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"  
 GROQ_MODEL = "llama-3.3-70b-versatile"
 
 VARIABLES = {
