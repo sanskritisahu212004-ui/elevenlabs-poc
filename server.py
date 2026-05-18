@@ -6,6 +6,11 @@ import os
 GROQ_API_KEY = "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"  
 GROQ_MODEL = "llama-3.3-70b-versatile"
 
+VARIABLES = {
+    "agent_name": "Siya",
+    "mandates": "Sky Marina"
+}
+
 # Test Groq connection on startup
 def test_groq():
     payload = json.dumps({
@@ -33,11 +38,6 @@ def test_groq():
             print(f"❌ Groq Error: {str(e)}")
 
 
-
-VARIABLES = {
-    "agent_name": "Siya",
-    "mandates": "Sky Marina"
-}
 
 KNOWLEDGE = """
 Project Name: Sky Marina – The Tallest Residential Landmark in Dombivli
